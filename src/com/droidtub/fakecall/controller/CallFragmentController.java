@@ -9,6 +9,7 @@ import com.droidtub.fakecall.view.MainActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,10 @@ public class CallFragmentController {
 
 	public void setActivity(ActionBarActivity activity){
 		mActivity = activity;
-		
+	}
+	
+	public void setFragment(Fragment fragment){
+		mFragment = fragment;
 	}
 	
 	public Context getContext(){
@@ -38,6 +42,7 @@ public class CallFragmentController {
 	
 	public View onCreate(ViewGroup container, Bundle savedInstanceState){
 		Context context = getContext().getApplicationContext();
+		mCallList = new ArrayList<CallItemData>();
 		mCallListUi.setActivityAndController(mActivity, this);
 		View v = mCallListUi.createView(container);
 		return v;
@@ -46,6 +51,14 @@ public class CallFragmentController {
 	public CallListAdapter getAdapter(){
 		mCallListAdapter = new CallListAdapter(mCallList, mActivity,this);
 		return mCallListAdapter;
+	}
+	
+	public ArrayList<CallItemData> getCallList(){
+		return mCallList;
+	}
+	
+	public FragmentManager getFragmentManager(){
+		return mFragment.getFragmentManager();
 	}
 	
 }

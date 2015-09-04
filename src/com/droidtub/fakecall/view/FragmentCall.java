@@ -26,6 +26,7 @@ public class FragmentCall extends Fragment{
 		createUi();
 		mCallFragmentController.setUi(mCallListUi);
 		mCallFragmentController.setActivity(mActivity);
+		mCallFragmentController.setFragment(this);
 	}
 	
 	private void createUi() {

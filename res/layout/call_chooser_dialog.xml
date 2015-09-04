@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content" 
+    android:id="@+id/call_chooser_dialog"
+    android:orientation="vertical">
+    
+  
+    <TextView
+        android:id="@+id/call_chooser_title"
+        style="@style/DialogTitle"
+        android:text="@string/call_chooser_title_text"/>
+    
+    <TextView 
+        android:id="@+id/call_chooser_contact"
+        style="@style/DialogItem"
+        android:text="@string/call_chooser_contact_text"/>
+    
+    <TextView 
+        android:id="@+id/call_chooser_call_log"
+        style="@style/DialogItem"
+        android:text="@string/call_chooser_call_log_text"/>
+    
+    <TextView
+        android:id="@+id/call_chooser_manual"
+        style="@style/DialogItem"
+        android:text="@string/call_chooser_manual_text"/>
+
+</LinearLayout>
