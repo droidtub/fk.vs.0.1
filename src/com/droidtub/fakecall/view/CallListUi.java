@@ -126,6 +126,8 @@ public class CallListUi {
 			LayoutInflater inflater = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
 			View view = inflater.inflate(R.layout.add_profile_dialog, null);
+			
+			builder.setView(view);
 			Dialog addDialogManual = builder.create();
 			return addDialogManual;
 		}

@@ -10,4 +10,8 @@
     <string name="call_chooser_contact_text">From contact</string>
     <string name="call_chooser_call_log_text">From call log</string>
     <string name="call_chooser_manual_text">Manual</string>
+    
+    <string name="add_call_profile_title_text">Add fake call</string>
+    <string name="call_name_text">Name</string>
+    <string name="call_number_text">Phone number</string>
 </resources>

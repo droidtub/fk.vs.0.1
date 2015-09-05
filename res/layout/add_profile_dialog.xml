@@ -4,5 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <TextView 
+        android:id="@+id/add_call_profile_title"
+        style="@style/DialogTitle"
+        android:text="@string/add_call_profile_title_text"/>
+    
+    <EditText 
+        android:id="@+id/add_call_name"
+        style="@style/DialogItem"
+        android:hint="@string/call_name_text"/>
+    
+    <EditText 
+        android:id="@+id/add_call_number"
+        style="@style/DialogItem"
+        android:hint="@string/call_number_text"/>
+    
+    <RelativeLayout 
+        android:id="@+id/"
 
 </LinearLayout>
