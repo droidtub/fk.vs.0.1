@@ -125,7 +125,7 @@ public class CallListUi {
 		mAddProfileDialog.show(fragmentManager, null);
 	}
 	
-	class AddProfileDialog extends DialogFragment{
+	class AddProfileDialog extends DialogFragment implements View.OnClickListener{
 		EditText mHourValue;
 		EditText mMinValue;
 		EditText mSecValue;
@@ -146,10 +146,27 @@ public class CallListUi {
 			mMinValue = (EditText)view.findViewById(R.id.call_minute_value);
 			mSecValue = (EditText)view.findViewById(R.id.call_second_value);
 			mSetBtn = (TextView)view.findViewById(R.id.set_btn);
+			mSetBtn.setOnClickListener(this);
 			mCancelBtn = (TextView)view.findViewById(R.id.cancel_btn);
+			mCancelBtn.setOnClickListener(this);
 			builder.setView(view);
 			Dialog addDialogManual = builder.create();
 			return addDialogManual;
+		}
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.set_btn:
+				dismiss();
+				break;
+			case R.id.cancel_btn:
+				dismiss();
+				break;
+			default:
+				break;
+			}
+			
 		}
 	}
 }

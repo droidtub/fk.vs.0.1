@@ -19,7 +19,8 @@
         android:id="@+id/add_call_number"
         style="@style/DialogItem"
         android:hint="@string/call_number_text"
-        android:textColorHint="@color/text_hint"/>
+        android:textColorHint="@color/text_hint"
+        android:inputType="number"/>
     
     <TextView 
         android:id="@+id/time_out_text"
