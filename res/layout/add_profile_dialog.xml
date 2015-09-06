@@ -12,14 +12,24 @@
     <EditText 
         android:id="@+id/add_call_name"
         style="@style/DialogItem"
-        android:hint="@string/call_name_text"/>
+        android:hint="@string/call_name_text"
+        android:textColorHint="@color/text_hint"/>
     
     <EditText 
         android:id="@+id/add_call_number"
         style="@style/DialogItem"
-        android:hint="@string/call_number_text"/>
+        android:hint="@string/call_number_text"
+        android:textColorHint="@color/text_hint"/>
     
-    <RelativeLayout 
-        android:id="@+id/"
+    <TextView 
+        android:id="@+id/time_out_text"
+        style="@style/DialogItem"
+        android:text="@string/time_out_title_text"/>
+    
+    <include
+        layout="@layout/time_out_picker"/>
+    
+    <include 
+        layout="@layout/bottom_bar_dialog"/>
 
 </LinearLayout>

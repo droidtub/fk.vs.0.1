@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -105,6 +106,12 @@ public class CallListUi {
 				dismiss();
 				break;
 
+			case R.id.call_chooser_contact:
+				dismiss();
+				break;
+			case R.id.call_chooser_call_log:
+				dismiss();
+				break;
 			default:
 				break;
 			}
@@ -119,6 +126,13 @@ public class CallListUi {
 	}
 	
 	class AddProfileDialog extends DialogFragment{
+		EditText mHourValue;
+		EditText mMinValue;
+		EditText mSecValue;
+		TextView mSetBtn;
+		TextView mCancelBtn;
+		EditText mName;
+		EditText mNumber;
 		
 		@Override
 		public Dialog onCreateDialog(Bundle bundle){
@@ -126,7 +140,13 @@ public class CallListUi {
 			LayoutInflater inflater = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
 			View view = inflater.inflate(R.layout.add_profile_dialog, null);
-			
+			mName = (EditText)view.findViewById(R.id.add_call_name);
+			mNumber = (EditText)view.findViewById(R.id.add_call_number);
+			mHourValue = (EditText)view.findViewById(R.id.call_hour_value);
+			mMinValue = (EditText)view.findViewById(R.id.call_minute_value);
+			mSecValue = (EditText)view.findViewById(R.id.call_second_value);
+			mSetBtn = (TextView)view.findViewById(R.id.set_btn);
+			mCancelBtn = (TextView)view.findViewById(R.id.cancel_btn);
 			builder.setView(view);
 			Dialog addDialogManual = builder.create();
 			return addDialogManual;

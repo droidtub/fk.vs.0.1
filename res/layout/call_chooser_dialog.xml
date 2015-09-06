@@ -3,7 +3,8 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content" 
     android:id="@+id/call_chooser_dialog"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
     
   
     <TextView
@@ -24,6 +25,7 @@
     <TextView
         android:id="@+id/call_chooser_manual"
         style="@style/DialogItem"
-        android:text="@string/call_chooser_manual_text"/>
+        android:text="@string/call_chooser_manual_text"
+        android:layout_marginBottom="10dp"/>
 
 </LinearLayout>
