@@ -26,6 +26,6 @@
         android:id="@+id/call_chooser_manual"
         style="@style/DialogItem"
         android:text="@string/call_chooser_manual_text"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="6dp"/>
 
 </LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <RelativeLayout 
+        android:id="@+id/contacts_activity_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+        
+        <ImageButton 
+            android:id="@+id/contacts_activity_back_btn"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_back_btn"
+            android:paddingLeft="17dp"
+            android:background="@color/colorPrimary"/>
+        
+        <TextView 
+            android:id="@+id/contacts_activity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/contacts_activity_back_btn"
+            android:text="@string/contacts_activity_title"
+            android:textSize="@dimen/text_title_dimen"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white"/>
+        
+        <TextView 
+            android:id="@+id/contact_add_btn"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/add_btn_text"
+            android:textSize="@dimen/text_title_dimen"
+            android:gravity="center_vertical"
+            android:paddingRight="17dp"
+            android:textColor="@color/white"
+            android:visibility="gone"/>
+        
+    </RelativeLayout>
+    
+    <ListView
+        android:id="@+id/contacts_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/contacts_activity_actionbar"
+        android:background="@color/background_fragment"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@drawable/list_selector"/>
+    
+
+</RelativeLayout>

@@ -21,13 +21,14 @@ public class FragmentCall extends Fragment{
 	@Override
 	public void onAttach(Activity activity){
 		super.onAttach((ActionBarActivity)activity);
-		mActivity = (ActionBarActivity) activity;	
+		mActivity = (ActionBarActivity)activity;
 		mCallFragmentController = new CallFragmentController();
 		createUi();
 		mCallFragmentController.setUi(mCallListUi);
 		mCallFragmentController.setActivity(mActivity);
 		mCallFragmentController.setFragment(this);
 	}
+	
 	
 	private void createUi() {
 		try {

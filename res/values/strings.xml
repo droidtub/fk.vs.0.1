@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Fake Call</string>
+    <string name="contacts_activity">Contacts</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -17,4 +18,7 @@
     <string name="set_text">Set</string>
     <string name="cancel_text">Cancel</string>
     <string name="time_out_title_text">Time out</string>
+    
+    <string name="contacts_activity_title"> Contacts</string>
+	<string name="add_btn_text">Add</string>
 </resources>

@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/call_list_no_item"
         android:textColor="@color/text_color"
-        android:textSize="18sp" 
+        android:textSize="16sp" 
         android:visibility="visible"/>
     
    <ImageButton

@@ -5,19 +5,18 @@ import java.util.ArrayList;
 import com.droidtub.fakecall.model.CallItemData;
 
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class CallListAdapter extends BaseAdapter {
-	
+public class CallListAdapter extends BaseAdapter{
+
 	private ArrayList<CallItemData> mCallList;
 	private Context mContext;
 	private CallFragmentController mController;
-
-	public CallListAdapter(ArrayList<CallItemData> callList, Context context, CallFragmentController controller){
+	
+	public CallListAdapter(ArrayList<CallItemData> callList, Context context, CallFragmentController controller) {
 		mCallList = callList;
 		mContext = context;
 		mController = controller;
@@ -36,7 +35,7 @@ public class CallListAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return mCallList.get(position);
+		return null;
 	}
 
 	@Override

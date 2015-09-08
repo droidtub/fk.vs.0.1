@@ -14,5 +14,7 @@
     <color name="bg_gray">#90e2e2e2</color>
     <color name="text_color">#616161</color>
     <color name="text_hint">#bdbdbd</color>
+    <color name="list_background_normal">#ececec</color>
+    <color name="list_background_pressed">#96d0da</color>
 
 </resources>

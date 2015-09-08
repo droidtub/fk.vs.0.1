@@ -9,4 +9,6 @@
     <dimen name="fab_button_margin_right">16dp</dimen>
     <dimen name="elevation_low">1dp</dimen>
     <dimen name="elevation_high">8dp</dimen>
+    
+    <dimen name="text_title_dimen">18sp</dimen>
 </resources>

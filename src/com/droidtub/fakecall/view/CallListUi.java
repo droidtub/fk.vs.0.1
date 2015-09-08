@@ -5,6 +5,7 @@ import com.droidtub.fakecall.controller.CallFragmentController;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -107,6 +108,8 @@ public class CallListUi {
 				break;
 
 			case R.id.call_chooser_contact:
+				Intent i = new Intent(mActivity, ContactsActivity.class);
+				startActivity(i);
 				dismiss();
 				break;
 			case R.id.call_chooser_call_log:
