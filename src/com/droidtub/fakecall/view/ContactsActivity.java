@@ -24,5 +24,8 @@ public class ContactsActivity extends Activity implements OnClickListener{
 		
 	}
 
-	
+	@Override
+	public void finish(){
+		super.finish();
+	}
 }

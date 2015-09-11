@@ -103,7 +103,7 @@ public class CallListUi {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.call_chooser_manual:
-				showAddManualDialog(mController.getFragmentManager());
+				showAddManualDialog(mActivity.getFragmentManager());
 				dismiss();
 				break;
 
@@ -123,53 +123,10 @@ public class CallListUi {
 		
 	}
 
-	public void showAddManualDialog(FragmentManager fragmentManager) {
-		AddProfileDialog mAddProfileDialog = new AddProfileDialog();
+	public void showAddManualDialog(android.app.FragmentManager fragmentManager) {
+		AddProfileDialog mAddProfileDialog = AddProfileDialog.newInstance(mActivity, "", "");
 		mAddProfileDialog.show(fragmentManager, null);
 	}
 	
-	class AddProfileDialog extends DialogFragment implements View.OnClickListener{
-		EditText mHourValue;
-		EditText mMinValue;
-		EditText mSecValue;
-		TextView mSetBtn;
-		TextView mCancelBtn;
-		EditText mName;
-		EditText mNumber;
-		
-		@Override
-		public Dialog onCreateDialog(Bundle bundle){
-			AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-			LayoutInflater inflater = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			
-			View view = inflater.inflate(R.layout.add_profile_dialog, null);
-			mName = (EditText)view.findViewById(R.id.add_call_name);
-			mNumber = (EditText)view.findViewById(R.id.add_call_number);
-			mHourValue = (EditText)view.findViewById(R.id.call_hour_value);
-			mMinValue = (EditText)view.findViewById(R.id.call_minute_value);
-			mSecValue = (EditText)view.findViewById(R.id.call_second_value);
-			mSetBtn = (TextView)view.findViewById(R.id.set_btn);
-			mSetBtn.setOnClickListener(this);
-			mCancelBtn = (TextView)view.findViewById(R.id.cancel_btn);
-			mCancelBtn.setOnClickListener(this);
-			builder.setView(view);
-			Dialog addDialogManual = builder.create();
-			return addDialogManual;
-		}
-
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-			case R.id.set_btn:
-				dismiss();
-				break;
-			case R.id.cancel_btn:
-				dismiss();
-				break;
-			default:
-				break;
-			}
-			
-		}
-	}
+	
 }

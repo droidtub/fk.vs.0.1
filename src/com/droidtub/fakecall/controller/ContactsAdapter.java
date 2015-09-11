@@ -23,13 +23,6 @@ public class ContactsAdapter extends BaseAdapter {
 	ArrayList<ContactItem> mPhoneList;
 	private ContactsController mController;
 	
-	/*public ContactsAdapter(Activity context, int resource, ArrayList<ContactItem> objects) {
-		super(context, resource, objects);
-		this.mActivity = context;
-		layoutId = resource;
-		mPhoneList = objects;
-	}*/
-	
 	public ContactsAdapter(Activity context, ArrayList<ContactItem> objects, ContactsController controller){
 		mActivity = context;
 		mPhoneList = objects;
@@ -40,15 +33,15 @@ public class ContactsAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent){
 		ViewHolder holder = null;
 		if(convertView == null){
-			LayoutInflater inflater = mActivity.getLayoutInflater();
+			LayoutInflater inflater = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.contact_item, null);
 			
 			holder = new ViewHolder();
 			holder.mName = (TextView)convertView.findViewById(R.id.contact_name);
 			holder.mNumber = (TextView)convertView.findViewById(R.id.contact_number);
-			holder.mCheckbox = (CheckBox)convertView.findViewById(R.id.contact_checkbox);
+			//holder.mCheckbox = (CheckBox)convertView.findViewById(R.id.contact_checkbox);
 			convertView.setTag(holder);
-			holder.mCheckbox.setOnClickListener(new View.OnClickListener() {
+			/*holder.mCheckbox.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -56,7 +49,7 @@ public class ContactsAdapter extends BaseAdapter {
 					ContactItem item = (ContactItem)cb.getTag();
 					item.setSelected(cb.isChecked());
 				}
-			});
+			});*/
 		}else{
 			holder = (ViewHolder)convertView.getTag();
 		}
@@ -65,15 +58,15 @@ public class ContactsAdapter extends BaseAdapter {
 			holder.mName.setText(item.getNumber());
 		else holder.mName.setText(item.getName());
 		holder.mNumber.setText(item.getNumber());
-		holder.mCheckbox.setChecked(item.isSelected());
-		holder.mCheckbox.setTag(item);
+		//holder.mCheckbox.setChecked(item.isSelected());
+		//holder.mCheckbox.setTag(item);
 		return convertView;
 	}
 	
 	private class ViewHolder{
 		TextView mName;
 		TextView mNumber;
-		CheckBox mCheckbox;
+		//CheckBox mCheckbox;
 	}
 
 	@Override
