@@ -1,13 +1,14 @@
 package com.droidtub.fakecall.view;
 
 import com.droidtub.fakecall.R;
+import com.droidtub.fakecall.controller.FcSQLiteOpenHelper;
+import com.droidtub.fakecall.model.ContactItem;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
-
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,7 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 		private EditText mName;
 		private EditText mNumber;
 		static private Activity mActivity;
-	
+		private ContactItem mContactItem;
 		
 		public static AddProfileDialog newInstance(Activity context, String name, String number){
 			AddProfileDialog dialog = new AddProfileDialog();
@@ -43,6 +44,7 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 			String name = getArguments().getString("name");
 			AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 			LayoutInflater inflater = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mContactItem = new ContactItem();
 			
 			View view = inflater.inflate(R.layout.add_profile_dialog, null);
 			mName = (EditText)view.findViewById(R.id.add_call_name);
@@ -66,7 +68,8 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.set_btn:
-				
+				setModelFromLayout();
+				FcSQLiteOpenHelper.getInstance(mActivity).insertFakeCallProfile(mContactItem);
 				dismiss();
 				break;
 			case R.id.cancel_btn:
@@ -76,6 +79,15 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 				break;
 			}
 			
+		}
+		
+		public void setModelFromLayout(){
+			mContactItem.setName(mName.getText().toString());
+			mContactItem.setName(mNumber.getText().toString());
+			mContactItem.setHour(Integer.parseInt(mHourValue.getText().toString()));
+			mContactItem.setMinute(Integer.parseInt(mMinValue.getText().toString()));
+			mContactItem.setSecond(Integer.parseInt(mSecValue.getText().toString()));
+			mContactItem.setSelected(true);
 		}
 	
 }

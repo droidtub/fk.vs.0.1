@@ -1,12 +1,17 @@
 package com.droidtub.fakecall.controller;
 
+import java.util.ArrayList;
+
+import com.droidtub.fakecall.model.ContactItem;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
-	
+
 	public static final String TAG = "FcSQLiteOpenHelper";
 	private static final String DB_NAME = "FakeCallList.db";
 	private static final int ver = 1;
@@ -16,7 +21,9 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 	public static final String FC_ID = "_id";
 	public static final String FC_NAME = "Name";
 	public static final String FC_NUMBER = "Number";
-	public static final String FC_TIME = "Time";
+	public static final String FC_HOUR = "Hour";
+	public static final String FC_MIN = "Min";
+	public static final String FC_SEC = "Sec";
 	
 	public static final String TB_FAKE_MSG = "tb_fakemsg";
 	public static final String FM_ID = "_id";
@@ -39,13 +46,13 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String sql = "CREATE TABLE " + TB_FAKE_CALL + "(" + FC_ID + 
-				" INTEGER PRIMARY KEY AUTO INCREMENT, " + FC_NAME + " TEXT" + FC_NUMBER + 
-				" TEXT" + FC_TIME + " INTEGER)";
+				" INTEGER PRIMARY KEY, " + FC_NAME + " TEXT, " + FC_NUMBER + 
+				" TEXT, " + FC_HOUR + " INTEGER, " + FC_MIN + " INTEGER, " + FC_SEC + " INTEGER)";
 		db.execSQL(sql);
 		
 		sql = "CREATE TABLE " + TB_FAKE_MSG + "(" + FM_ID +
-				" INTEGER PRIMARY KEY AUTO INCREMENT, " + FM_NAME + " TEXT" + FM_NUMBER +
-				" TEXT" + FM_TIME + " INTEGER)";
+				" INTEGER PRIMARY KEY, " + FM_NAME + " TEXT, " + FM_NUMBER +
+				" TEXT, " + FM_TIME + " INTEGER)";
 		db.execSQL(sql);
 	}
 
@@ -61,7 +68,18 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		ContentValues cv = new ContentValues();
 		cv.put(FC_NAME, name);
 		cv.put(FC_NUMBER, number);
-		cv.put(FC_TIME, time);
+		cv.put(FC_HOUR, time);
+		db.insertOrThrow(TB_FAKE_CALL, null, cv);
+	}
+	
+	public void insertFakeCallProfile(ContactItem mContactItem){
+		db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(FC_NAME, mContactItem.getName());
+		cv.put(FC_NUMBER, mContactItem.getNumber());
+		cv.put(FC_HOUR, mContactItem.getHour());
+		cv.put(FC_MIN, mContactItem.getMinute());
+		cv.put(FC_SEC, mContactItem.getSecond());
 		db.insertOrThrow(TB_FAKE_CALL, null, cv);
 	}
 	
@@ -72,5 +90,30 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		cv.put(FM_NUMBER, number);
 		db.insertOrThrow(TB_FAKE_MSG, null, cv);
 	}
+
+	public ArrayList<ContactItem> getAllContactList(){
+		
+		db = this.getReadableDatabase();
+		ArrayList<ContactItem> list = new ArrayList<ContactItem>();
+		Cursor cursor = null;
+		String orderBy = FC_ID + " DESC";
+		cursor = db.query(TB_FAKE_CALL, null, null, null, null, null, orderBy);
+		if(cursor == null)
+			return null;
+		cursor.moveToFirst();
+		int count = cursor.getCount();
+		for(int i = 0; i < count; i++){
+			ContactItem item = new ContactItem(cursor.getString(cursor.getColumnIndex(FC_NAME)), 
+					cursor.getString(cursor.getColumnIndex(FC_NUMBER)), 
+					cursor.getInt(cursor.getColumnIndex(FC_HOUR)),
+					cursor.getInt(cursor.getColumnIndex(FC_MIN)),
+					cursor.getInt(cursor.getColumnIndex(FC_SEC)));
+			list.add(item);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return list;
+	}
+	
 	
 }

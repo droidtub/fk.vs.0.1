@@ -3,6 +3,7 @@ package com.droidtub.fakecall.controller;
 import java.util.ArrayList;
 
 import com.droidtub.fakecall.model.CallItemData;
+import com.droidtub.fakecall.model.ContactItem;
 import com.droidtub.fakecall.view.CallAddItemDialog;
 import com.droidtub.fakecall.view.CallListUi;
 import com.droidtub.fakecall.view.MainActivity;
@@ -23,7 +24,7 @@ public class CallFragmentController {
 	private CallListUi mCallListUi;
 	private Fragment mFragment;
 	private CallListAdapter mCallListAdapter;
-	private ArrayList<CallItemData> mCallList;
+	private ArrayList<ContactItem> mCallList;
 	
 	
 	public void setUi(CallListUi callListUi){
@@ -31,9 +32,7 @@ public class CallFragmentController {
 	}
 
 	public void setActivity(ActionBarActivity activity){
-		
 		mActivity = activity;
-		
 	}
 	
 	public void setFragment(Fragment fragment){
@@ -49,19 +48,26 @@ public class CallFragmentController {
 	}
 	
 	public CallListAdapter getAdapter(){
-		mCallListAdapter = new CallListAdapter(mCallList, mActivity, this);
 		return mCallListAdapter;
 	}
 	
-	public ArrayList<CallItemData> getCallList(){
+	public ArrayList<ContactItem> getCallList(){
 		return mCallList;
 	}
 	
 	public View onCreate(ViewGroup container, Bundle savedInstanceState){
-		mCallList = new ArrayList<CallItemData>();
+		mCallList = new ArrayList<ContactItem>();	
 		mCallListUi.setActivityAndController(mActivity, this);
+		//mCallList = FcSQLiteOpenHelper.getInstance(mActivity).getAllContactList();
+		//mCallListAdapter.notifyDataSetChanged();
 		View v = mCallListUi.createView(container);
 		return v;
+	}
+	
+	public void onResume(){
+		mCallList = FcSQLiteOpenHelper.getInstance(mActivity).getAllContactList();
+		mCallListAdapter = new CallListAdapter(mCallList, mActivity, this);
+		mCallListAdapter.notifyDataSetChanged();
 	}
 	
 }

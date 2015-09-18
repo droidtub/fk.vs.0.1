@@ -44,4 +44,10 @@ public class FragmentCall extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		return mCallFragmentController.onCreate(container, savedInstanceState);
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		mCallFragmentController.onResume();
+	}
 }
