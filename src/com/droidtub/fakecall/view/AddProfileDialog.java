@@ -71,6 +71,7 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 				setModelFromLayout();
 				FcSQLiteOpenHelper.getInstance(mActivity).insertFakeCallProfile(mContactItem);
 				dismiss();
+				mActivity.finish();
 				break;
 			case R.id.cancel_btn:
 				dismiss();

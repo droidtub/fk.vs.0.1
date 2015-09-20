@@ -69,7 +69,7 @@ public class CallListAdapter extends BaseAdapter{
 		ContactItem item = mCallList.get(position);
 		holder.mName.setText(item.getName());
 		holder.mNumber.setText(item.getNumber());
-		return null;
+		return convertView;
 	}
 
 	private class ViewHolder{

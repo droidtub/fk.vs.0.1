@@ -58,16 +58,17 @@ public class CallFragmentController {
 	public View onCreate(ViewGroup container, Bundle savedInstanceState){
 		mCallList = new ArrayList<ContactItem>();	
 		mCallListUi.setActivityAndController(mActivity, this);
-		//mCallList = FcSQLiteOpenHelper.getInstance(mActivity).getAllContactList();
-		//mCallListAdapter.notifyDataSetChanged();
 		View v = mCallListUi.createView(container);
 		return v;
 	}
 	
 	public void onResume(){
-		mCallList = FcSQLiteOpenHelper.getInstance(mActivity).getAllContactList();
+		loadContactList();
 		mCallListAdapter = new CallListAdapter(mCallList, mActivity, this);
-		mCallListAdapter.notifyDataSetChanged();
+		mCallListUi.onResume();
 	}
 	
+	public void loadContactList(){
+		mCallList = FcSQLiteOpenHelper.getInstance(mActivity).getAllContactList();
+	}
 }

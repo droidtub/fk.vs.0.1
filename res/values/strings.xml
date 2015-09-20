@@ -15,10 +15,12 @@
     <string name="add_call_profile_title_text">Add fake call</string>
     <string name="call_name_text">Name</string>
     <string name="call_number_text">Phone number</string>
+    <string name="ok_text">Ok</string>
     <string name="set_text">Set</string>
     <string name="cancel_text">Cancel</string>
     <string name="time_out_title_text">Time out</string>
     
     <string name="contacts_activity_title"> Contacts</string>
 	<string name="add_btn_text">Add</string>
+	<string name="delete_title_text">Delete Item</string>
 </resources>
