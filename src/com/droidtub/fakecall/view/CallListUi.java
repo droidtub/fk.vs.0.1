@@ -3,6 +3,7 @@ package com.droidtub.fakecall.view;
 import com.droidtub.fakecall.R;
 import com.droidtub.fakecall.controller.CallFragmentController;
 import com.droidtub.fakecall.controller.FcSQLiteOpenHelper;
+import com.droidtub.fakecall.model.ContactItem;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -77,10 +78,9 @@ public class CallListUi {
 		mController.getAdapter().notifyDataSetChanged();
 	}
 
-	protected void showDeleteDialog(int position){
+	protected void showDeleteDialog(final int position){
 		deleteDialog = new Dialog(mActivity);
 		deleteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		deleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		deleteDialog.setContentView(R.layout.delete_dialog);
 		
 		TextView btnCancel = (TextView)deleteDialog.findViewById(R.id.btn_cancel);
@@ -101,9 +101,13 @@ public class CallListUi {
 			@Override
 			public void onClick(View v) {
 				deleteDialog.dismiss();
-				FcSQLiteOpenHelper.getInstance(mActivity).deleteContactItem();
+				ContactItem item = mController.getCallList().get(position);
+				FcSQLiteOpenHelper.getInstance(mActivity).deleteContactItem(item);
+				mController.getAdapter().notifyDataSetChanged();
 			}
 		});
+		
+		deleteDialog.show();
 	}
 	
 	protected void showChooseDialog(FragmentManager fragmentManager) {

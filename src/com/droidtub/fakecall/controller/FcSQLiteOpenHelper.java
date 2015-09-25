@@ -115,5 +115,14 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		return list;
 	}
 	
+	public void deleteContactItem(ContactItem item){
+		db = this.getWritableDatabase();
+		String name = item.getName();
+		String number = item.getNumber();
+		int hour = item.getHour();
+		int min = item.getMinute();
+		int sec = item.getSecond();
+		db.delete(TB_FAKE_CALL, FC_NAME + " =? AND" + FC_NUMBER + " =? AND" + FC_HOUR + " =? AND" + FC_MIN + " =? AND" + FC_SEC + " =?", new String(){ name,number, hour, min, sec})
+	}
 	
 }
