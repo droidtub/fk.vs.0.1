@@ -98,6 +98,7 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		Cursor cursor = null;
 		String orderBy = FC_ID + " DESC";
 		cursor = db.query(TB_FAKE_CALL, null, null, null, null, null, orderBy);
+	
 		if(cursor == null)
 			return null;
 		cursor.moveToFirst();
