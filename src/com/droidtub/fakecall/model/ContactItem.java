@@ -4,33 +4,33 @@ public class ContactItem {
 	private String name;
 	private String number;
 	private boolean selected;
-	private int hour;
-	private int minute;
-	public int getHour() {
+	private String hour;
+	private String minute;
+	private String second;
+	public String getHour() {
 		return hour;
 	}
 
-	public void setHour(int hour) {
+	public void setHour(String hour) {
 		this.hour = hour;
 	}
 
-	public int getMinute() {
+	public String getMinute() {
 		return minute;
 	}
 
-	public void setMinute(int minute) {
+	public void setMinute(String minute) {
 		this.minute = minute;
 	}
 
-	public int getSecond() {
+	public String getSecond() {
 		return second;
 	}
 
-	public void setSecond(int second) {
+	public void setSecond(String second) {
 		this.second = second;
 	}
 
-	private int second;
 	
 	public ContactItem(){
 		
@@ -47,7 +47,7 @@ public class ContactItem {
 		this.selected = selected;
 	}
 	
-	public ContactItem(String name, String number, int hour, int min, int sec){
+	public ContactItem(String name, String number, String hour, String min, String sec){
 		this.name = name;
 		this.number = number;
 		this.hour = hour;

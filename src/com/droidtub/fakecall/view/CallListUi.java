@@ -5,6 +5,7 @@ import com.droidtub.fakecall.controller.CallFragmentController;
 import com.droidtub.fakecall.controller.FcSQLiteOpenHelper;
 import com.droidtub.fakecall.model.ContactItem;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -100,10 +101,12 @@ public class CallListUi {
 			
 			@Override
 			public void onClick(View v) {
-				deleteDialog.dismiss();
+				
 				ContactItem item = mController.getCallList().get(position);
 				FcSQLiteOpenHelper.getInstance(mActivity).deleteContactItem(item);
-				mController.getAdapter().notifyDataSetChanged();
+				mController.refreshItem();
+				checkForEmptyList();
+				deleteDialog.dismiss();
 			}
 		});
 		
@@ -119,6 +122,7 @@ public class CallListUi {
 
 	private void checkForEmptyList() {
 		if(mController.getCallList().size() == 0){
+			callListView.setVisibility(View.GONE);
 			noItemText.setVisibility(View.VISIBLE);
 		}else{
 			noItemText.setVisibility(View.GONE);
@@ -154,7 +158,7 @@ public class CallListUi {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.call_chooser_manual:
-				showAddManualDialog(mActivity.getFragmentManager());
+				showAddManualDialog(getFragmentManager());
 				dismiss();
 				break;
 
@@ -174,10 +178,71 @@ public class CallListUi {
 		
 	}
 
-	public void showAddManualDialog(android.app.FragmentManager fragmentManager) {
-		AddProfileDialog mAddProfileDialog = AddProfileDialog.newInstance(mActivity, "", "");
+	public void showAddManualDialog(FragmentManager fragmentManager) {
+		AddProfileDialog mAddProfileDialog = new AddProfileDialog();
 		mAddProfileDialog.show(fragmentManager, null);
 	}
 	
-	
+	class AddProfileDialog extends DialogFragment implements View.OnClickListener{
+		
+		private EditText mHourValue;
+		private EditText mMinValue;
+		private EditText mSecValue;
+		private TextView mSetBtn;
+		private TextView mCancelBtn;
+		private EditText mName;
+		private EditText mNumber;
+		private ContactItem mContactItem;
+		
+		@Override
+		public Dialog onCreateDialog(Bundle bundle){
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+			LayoutInflater inflater = (LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mContactItem = new ContactItem();
+			
+			View view = inflater.inflate(R.layout.add_profile_dialog, null);
+			mName = (EditText)view.findViewById(R.id.add_call_name);
+			mNumber = (EditText)view.findViewById(R.id.add_call_number);
+			
+			mHourValue = (EditText)view.findViewById(R.id.call_hour_value);
+			mMinValue = (EditText)view.findViewById(R.id.call_minute_value);
+			mSecValue = (EditText)view.findViewById(R.id.call_second_value);
+			mSetBtn = (TextView)view.findViewById(R.id.set_btn);
+			mSetBtn.setOnClickListener(this);
+			mCancelBtn = (TextView)view.findViewById(R.id.cancel_btn);
+			mCancelBtn.setOnClickListener(this);
+			builder.setView(view);
+			Dialog addDialogManual = builder.create();
+			return addDialogManual;
+		}
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.set_btn:
+				setModelFromLayout();
+				FcSQLiteOpenHelper.getInstance(mActivity).insertFakeCallProfile(mContactItem);
+				mController.refreshItem();
+				checkForEmptyList();
+				dismiss();
+				break;
+			case R.id.cancel_btn:
+				dismiss();
+				break;
+			default:
+				break;
+			}
+			
+		}
+		
+		public void setModelFromLayout(){
+			mContactItem.setName(mName.getText().toString());
+			mContactItem.setNumber(mNumber.getText().toString());
+			mContactItem.setHour(mHourValue.getText().toString());
+			mContactItem.setMinute(mMinValue.getText().toString());
+			mContactItem.setSecond(mSecValue.getText().toString());
+			mContactItem.setSelected(true);
+		}
+	}
 }

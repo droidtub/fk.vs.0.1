@@ -1,6 +1,7 @@
 package com.droidtub.fakecall.view;
 
 import com.droidtub.fakecall.R;
+import com.droidtub.fakecall.controller.CallFragmentController;
 import com.droidtub.fakecall.controller.FcSQLiteOpenHelper;
 import com.droidtub.fakecall.model.ContactItem;
 
@@ -71,7 +72,6 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 				setModelFromLayout();
 				FcSQLiteOpenHelper.getInstance(mActivity).insertFakeCallProfile(mContactItem);
 				dismiss();
-				mActivity.finish();
 				break;
 			case R.id.cancel_btn:
 				dismiss();
@@ -84,10 +84,10 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 		
 		public void setModelFromLayout(){
 			mContactItem.setName(mName.getText().toString());
-			mContactItem.setName(mNumber.getText().toString());
-			mContactItem.setHour(Integer.parseInt(mHourValue.getText().toString()));
-			mContactItem.setMinute(Integer.parseInt(mMinValue.getText().toString()));
-			mContactItem.setSecond(Integer.parseInt(mSecValue.getText().toString()));
+			mContactItem.setNumber(mNumber.getText().toString());
+			mContactItem.setHour(mHourValue.getText().toString());
+			mContactItem.setMinute(mMinValue.getText().toString());
+			mContactItem.setSecond(mSecValue.getText().toString());
 			mContactItem.setSelected(true);
 		}
 	

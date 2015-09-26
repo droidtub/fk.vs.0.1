@@ -39,6 +39,9 @@ public class FragmentCall extends Fragment{
 		
 	}
 
+	public CallFragmentController getController(){
+		return mCallFragmentController;
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

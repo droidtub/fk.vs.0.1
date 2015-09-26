@@ -50,6 +50,11 @@ public class CallListAdapter extends BaseAdapter{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void swapItems(ArrayList<ContactItem> items){
+		this.mCallList = items;
+		notifyDataSetChanged();
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

@@ -47,7 +47,7 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String sql = "CREATE TABLE " + TB_FAKE_CALL + "(" + FC_ID + 
 				" INTEGER PRIMARY KEY, " + FC_NAME + " TEXT, " + FC_NUMBER + 
-				" TEXT, " + FC_HOUR + " INTEGER, " + FC_MIN + " INTEGER, " + FC_SEC + " INTEGER)";
+				" TEXT, " + FC_HOUR + " TEXT, " + FC_MIN + " TEXT, " + FC_SEC + " TEXT)";
 		db.execSQL(sql);
 		
 		sql = "CREATE TABLE " + TB_FAKE_MSG + "(" + FM_ID +
@@ -98,7 +98,6 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		Cursor cursor = null;
 		String orderBy = FC_ID + " DESC";
 		cursor = db.query(TB_FAKE_CALL, null, null, null, null, null, orderBy);
-	
 		if(cursor == null)
 			return null;
 		cursor.moveToFirst();
@@ -106,9 +105,9 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		for(int i = 0; i < count; i++){
 			ContactItem item = new ContactItem(cursor.getString(cursor.getColumnIndex(FC_NAME)), 
 					cursor.getString(cursor.getColumnIndex(FC_NUMBER)), 
-					cursor.getInt(cursor.getColumnIndex(FC_HOUR)),
-					cursor.getInt(cursor.getColumnIndex(FC_MIN)),
-					cursor.getInt(cursor.getColumnIndex(FC_SEC)));
+					cursor.getString(cursor.getColumnIndex(FC_HOUR)),
+					cursor.getString(cursor.getColumnIndex(FC_MIN)),
+					cursor.getString(cursor.getColumnIndex(FC_SEC)));
 			list.add(item);
 			cursor.moveToNext();
 		}
@@ -120,10 +119,10 @@ public class FcSQLiteOpenHelper extends SQLiteOpenHelper {
 		db = this.getWritableDatabase();
 		String name = item.getName();
 		String number = item.getNumber();
-		int hour = item.getHour();
-		int min = item.getMinute();
-		int sec = item.getSecond();
-		db.delete(TB_FAKE_CALL, FC_NAME + " =? AND" + FC_NUMBER + " =? AND" + FC_HOUR + " =? AND" + FC_MIN + " =? AND" + FC_SEC + " =?", new String(){ name,number, hour, min, sec})
+		String hour = item.getHour();
+		String min = item.getMinute();
+		String sec = item.getSecond();
+		db.delete(TB_FAKE_CALL, FC_NAME + " =? AND " + FC_NUMBER + " =? AND " + FC_HOUR + " =? AND " + FC_MIN + " =? AND " + FC_SEC + " =?", new String[]{name ,number, hour, min, sec});
 	}
 	
 }
