@@ -65,7 +65,6 @@ public class CallFragmentController {
 	public void onResume(){
 		loadContactList();
 		mCallListAdapter = new CallListAdapter(mCallList, mActivity, this);
-		//mCallListAdapter.swapItems(mCallList);
 		mCallListUi.onResume();
 	}
 	
