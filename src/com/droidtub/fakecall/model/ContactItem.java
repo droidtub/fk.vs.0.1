@@ -1,6 +1,7 @@
 package com.droidtub.fakecall.model;
 
 public class ContactItem {
+	private long id = -1;
 	private String name;
 	private String number;
 	private boolean selected;
@@ -77,6 +78,10 @@ public class ContactItem {
 
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+
+	public long getId() {
+		return id;
 	}
 	
 	

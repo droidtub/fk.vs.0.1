@@ -2,6 +2,7 @@ package com.droidtub.fakecall.view;
 
 import com.droidtub.fakecall.R;
 import com.droidtub.fakecall.controller.CallFragmentController;
+import com.droidtub.fakecall.controller.FcReceiver;
 import com.droidtub.fakecall.controller.FcSQLiteOpenHelper;
 import com.droidtub.fakecall.model.ContactItem;
 
@@ -71,6 +72,7 @@ public class AddProfileDialog extends DialogFragment implements View.OnClickList
 			case R.id.set_btn:
 				setModelFromLayout();
 				FcSQLiteOpenHelper.getInstance(mActivity).insertFakeCallProfile(mContactItem);
+				FcReceiver.setAlarm(getActivity());
 				dismiss();
 				break;
 			case R.id.cancel_btn:
