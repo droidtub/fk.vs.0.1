@@ -15,12 +15,30 @@
     <string name="add_call_profile_title_text">Add fake call</string>
     <string name="call_name_text">Name</string>
     <string name="call_number_text">Phone number</string>
-    <string name="ok_text">Ok</string>
-    <string name="set_text">Set</string>
-    <string name="cancel_text">Cancel</string>
+    <string name="ok_text">OK</string>
+    <string name="set_text">SET</string>
+    <string name="cancel_text">CANCEL</string>
     <string name="time_out_title_text">Time out</string>
     
     <string name="contacts_activity_title"> Contacts</string>
 	<string name="add_btn_text">Add</string>
 	<string name="delete_title_text">Delete Item</string>
+	
+	<string-array name="rainbow">
+        <item>#67bf73</item>
+        <item>#e3c62d</item>
+        <item>#f9a43d</item>
+        <item>#2092cd</item>
+        <item>#f06292</item>
+        <item>#9575cd</item>
+        <item>#9e9e9e</item>
+        <item>#f9a825</item>
+        <item>#ff6e40</item>
+        <item>#bb3356</item>
+        <item>#f46070</item>
+        <item>#1c95cc</item>
+        <item>#3fc8d8</item>
+        <item>#f7ad28</item>
+        <item>#6395f4</item>   
+    </string-array>
 </resources>

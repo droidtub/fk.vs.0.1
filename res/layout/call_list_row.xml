@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" 
-    android:gravity="center_vertical"
-    android:layout_marginLeft="17dp">
-    
-    <ImageView
-        android:id="@+id/fc_item_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_launcher"/>
+    android:gravity="center_vertical">
     
     <LinearLayout 
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        
-        <TextView 
-            android:id="@+id/fc_item_name"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:paddingLeft="17dp"
-            android:gravity="center_vertical"/>
-        
-        <TextView 
-            android:id="@+id/fc_item_number"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:paddingLeft="17dp"
-            android:gravity="center_vertical"/>
-        
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal">
+    
+	    <FrameLayout 
+	        android:id="@+id/icon_first_char"
+	        android:layout_width="50dp"
+	        android:layout_height="50dp"
+	        android:layout_gravity="center"
+	        android:gravity="center"
+	        android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+	        android:shadowRadius="10.0"
+	        android:background="@drawable/circle">
+	        
+	        <TextView 
+	            android:id="@+id/tv_first_char"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:shadowRadius="10.0"
+	            android:textColor="@color/text_color"
+	            android:textSize="28sp"
+	            android:visibility="gone"/>
+	        
+	        <ImageView 
+	            android:id="@+id/iv_first_char"
+	            android:layout_width="35dp"
+	            android:layout_height="35dp"
+	            android:layout_gravity="center"
+	            android:gravity="center"
+	            android:background="@drawable/ic_person"
+	            android:visibility="gone"/>
+	        
+	    </FrameLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:orientation="vertical">
+	        
+	        <TextView 
+	            android:id="@+id/fc_item_name"
+	            android:layout_width="match_parent"
+	            android:layout_height="36dp"     
+	            android:gravity="bottom"/>
+	        
+	        <TextView 
+	            android:id="@+id/fc_item_number"
+	            android:layout_width="match_parent"
+	            android:layout_height="36dp"	           
+	            android:gravity="top"/>
+	        
+	    </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

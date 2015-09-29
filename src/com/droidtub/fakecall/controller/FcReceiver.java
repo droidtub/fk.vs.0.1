@@ -37,10 +37,22 @@ public class FcReceiver extends BroadcastReceiver {
 			final int nowMinute = Calendar.getInstance().get(Calendar.MINUTE);
 			final int nowSecond = Calendar.getInstance().get(Calendar.SECOND);
 			
-			calendar.set(Calendar.HOUR_OF_DAY, nowHour + Integer.parseInt(item.getHour()));
-			calendar.set(Calendar.MINUTE, nowMinute + Integer.parseInt(item.getMinute()));
-			calendar.set(Calendar.SECOND, nowSecond + Integer.parseInt(item.getSecond()));
-			
+			if(item.getHour().equals("")){
+				calendar.set(Calendar.HOUR_OF_DAY, nowHour + 0);
+			} else{
+				calendar.set(Calendar.HOUR_OF_DAY, nowHour + Integer.parseInt(item.getHour()));
+			}
+			if(item.getMinute().equals("")){
+				calendar.set(Calendar.MINUTE, nowMinute + 0);
+			} else{
+				calendar.set(Calendar.MINUTE, nowMinute + Integer.parseInt(item.getMinute()));
+			}
+			if(item.getSecond().equals("")){
+				calendar.set(Calendar.SECOND, nowHour + 0);
+			} else{
+				calendar.set(Calendar.SECOND, nowSecond + Integer.parseInt(item.getSecond()));
+			}
+		
 			setAlarm(context, calendar, pIntent);
 		
 		}
